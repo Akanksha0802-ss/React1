@@ -1,13 +1,20 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
 
 const SingleProduct = () => {
   // const params = useParams();
   // console.log(params);
   const { id } = useParams();
+  const navigate = useNavigate();
+  const handleBack = () => {
+    navigate("/products/" + 5);
+  };
   
   return (
-    <div>SingleProduct - {id} </div>
+    <div>
+      <h2>SingleProduct - {id}</h2>
+      <button onClick={handleBack}>Go Back</button>
+    </div>
   )
 }
 
