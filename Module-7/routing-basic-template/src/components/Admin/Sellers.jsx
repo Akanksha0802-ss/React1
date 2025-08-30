@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState} from "react";
 
 const Sellers = () => {
-  return <h3>Admin Sellers Page</h3>
+  const [name, setName] = useState("");
+    useEffect(()=>{
+       document.title = `Name is ${name}`;
+       const heading = document.querySelector("h3");
+       heading.style.color = "red"; 
+       console.log("Component Mount.!!");
+    }, [name]);
+    return (
+      <>
+        <h3>Admin Sellers Page</h3>
+        <input type='text' onChange={(e) => {
+          setName(e.target.value);
+        }}
+        />
+      </>  
+    ) 
 };
 
 export default Sellers;
