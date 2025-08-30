@@ -3,10 +3,13 @@ import React, { useEffect, useState} from "react";
 const Sellers = () => {
   const [name, setName] = useState("");
     useEffect(()=>{
-       document.title = `Name is ${name}`;
-       const heading = document.querySelector("h3");
-       heading.style.color = "red"; 
+       // document.title = `Name is ${name}`;
+      // const heading = document.querySelector("h3");
+       // heading.style.color = "red"; 
        console.log("Component Mount.!!");
+       return () => {
+         console.log("Component UnMount.!!");
+       };
     }, [name]);
     return (
       <>
