@@ -24,17 +24,34 @@ const Sellers = () => {
       //   .then((res) => res.json())
       //   .then((data) => console.log(data)).catch((error)=>{ });
     useEffect(() => {
-      setIsLoading(true);
-       axios.get("https://jsonplaceholder.typicode.com/users").then((res) => { 
-          setUsers(res.data);
-          setIsLoading(false);
-    })
-    .catch((err) => {
-      setErrors(err.message);
-      // console.log("ajay", err);
-      setIsLoading(false);
-    });
+      fetchUsers();
+    //   setIsLoading(true);
+    //    axios
+    //    .get("https://jsonplaceholder.typicode.com/users")
+    //    .then((res) => { 
+    //       setUsers(res.data);
+    //       setIsLoading(false);
+    // })
+    // .catch((err) => {
+    //   setErrors(err.message);
+    //   // console.log("ajay", err);
+    //   setIsLoading(false);
+    // });
   }, []);
+
+  const fetchUsers = async () => {
+    try {
+      setIsLoading(true);
+      const res = await axios.get("https://jsonplaceholder.typicode.com/users")
+      setUsers(res.data);
+      setIsLoading(false);
+    } catch (err) {
+      setErrors(err.message);
+      setIsLoading(false);
+    } finally {
+      console.log("Baaki sb thik");
+    }
+  }
   // if(isLoading) return <h3>Loading..</h3>
     return (
       <>
