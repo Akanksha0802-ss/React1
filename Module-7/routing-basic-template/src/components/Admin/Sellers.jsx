@@ -5,6 +5,7 @@ import Loader from "../common/Loader";
 const Sellers = () => {
        const [users, setUsers] = useState([]);
        const [isLoading, setIsLoading] = useState(false);
+       const [errors, setErrors] = useState("");
      // const [name, setName] = useState("");
     // useEffect(()=>{
        // document.title = `Name is ${name}`;
@@ -28,12 +29,18 @@ const Sellers = () => {
           setUsers(res.data);
           setIsLoading(false);
     })
+    .catch((err) => {
+      setErrors(err.message);
+      // console.log("ajay", err);
+      setIsLoading(false);
+    });
   }, []);
   // if(isLoading) return <h3>Loading..</h3>
     return (
       <>
         <h3>Admin Sellers Page</h3>
         {isLoading && <Loader />}
+        {errors && <em>{errors}</em>}
         {users.map((user) => (
           <p key={user.id}>{user.name}</p>
         ))}
