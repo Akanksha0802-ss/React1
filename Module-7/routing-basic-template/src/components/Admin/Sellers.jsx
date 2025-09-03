@@ -76,6 +76,21 @@ const Sellers = () => {
       setUsers(users);
     });
   };
+  const UpdateUser = (user) => {
+    // console.log(user)
+    const updateUser = {
+      ...user,
+      name: user.name + " Updated",
+    };
+    // console.log(user, UpdateUser);
+    setUsers(users.map((u) => (u.id === user.id ? updateUser : u)));
+    axios
+      .patch("https://jsonplaceholder.typicode.com/users/${user.id}", updateUser)
+      .catch((err) => {
+      setErrors(err.message);
+      setUsers(users);
+    });
+  };
   // if(isLoading) return <h3>Loading..</h3>;
     return (
       <>
@@ -99,6 +114,12 @@ const Sellers = () => {
                      deleteUser(user.id);
                   }}
                   >Delete</button>
+                </td>
+                <td>
+                  <button onClick={() => {
+                     UpdateUser(user);
+                  }}
+                  >Update</button>
                 </td>
               </tr>
             ))}
